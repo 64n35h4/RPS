@@ -38,6 +38,8 @@ class Game:
     @staticmethod
     def get_user_input():
         user_in = input("> ")
+        if not user_in: raise InvalidException()
+
         if user_in in CommandEnum.get_values():
             return get_action(user_in)
         if int(user_in) in EntityEnum.get_values():
@@ -68,12 +70,13 @@ class Game:
         if player:
             setattr(cls, player, getattr(cls, player) + 1)
 
-    @classmethod
-    def action_statistics(cls):
-        print(f"""Total Games: {cls.game_number}
-        User Wins: {cls.user_winning}
-        Computer Wins: {cls.computer_winning}
-        Tie Wins: {cls.tie_winning}""")
+    @staticmethod
+    def action_statistics():
+        print(f"""
+        Total Games: {Game.game_number}
+        User Wins: {Game.user_winning}
+        Computer Wins: {Game.computer_winning}
+        Tie Wins: {Game.tie_winning}""")
 
     @staticmethod
     def action_quit():
