@@ -6,21 +6,23 @@ from models.entity import EntityEnum
 def main():
     print("enter [q]uit/[e]xit to leave")
 
+    game = Game()
     while True:
-        game = Game()
+        game.print_help()
         try:
             user = game.get_user_input()
         except InvalidException:
-            print("wrong")
+            print("Wrong Input, please follow instructions")
             continue
         except GracefulExit:
-            print("bye")
+            print("Good-bye")
             break
-        if user is not EntityEnum:
+        if not isinstance(user, EntityEnum):
             continue
 
         com = game.get_computer_input()
         winner = game.calculate_winner(user, com)
+        game.add_game()
         print(f"Game No. {game.game_number} \nUser: {user.name}, Computer: {com.name} \n-> Winner: {winner.name}")
 
 

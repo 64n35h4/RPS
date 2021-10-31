@@ -3,6 +3,6 @@ from enum import Enum
 
 class TEntity(Enum):
 
-    @staticmethod
-    def get_values():
-        return [x.value for x in TEntity]
+    @classmethod
+    def get_values(cls):
+        return [x.value for x in cls]

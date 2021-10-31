@@ -1,15 +1,10 @@
 from actions.exceptions import GracefulExit
-from actions.game import Game
 from models import TEntity
 
 
 class ActionEnum(TEntity):
     QUIT = 'q'
     STATISTICS = 's'
-
-    @staticmethod
-    def get_values():
-        return [x.value for x in ActionEnum]
 
 
 class Actions:
@@ -27,4 +22,10 @@ class Actions:
 
     @staticmethod
     def action_statistics():
-        print(Game.game_number)
+        from actions.game import Game
+        print(f"""
+        Total Games: {Game.game_number}\n
+        User Wins: {Game.user_winning}\n
+        Computer Wins: {Game.computer_winning}\n
+        Tie Wins: {Game.tie_winning}\n
+        """)
