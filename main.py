@@ -6,7 +6,7 @@ from models.entity import EntityEnum
 
 
 def main():
-    print("enter [q]uit/[e]xit to leave")
+    print("enter [q]uit to leave")
 
     game = Game()
     while True:
@@ -27,9 +27,12 @@ def main():
         com = get_computer_input()
         winner = game.calculate_winner(user_action, com)
         game.add_game()
-        print(f"Game No. {game.game_number} \n"
-              f"User: {user_action.name}, Computer: {com.name} \n"
-              f"-> Winner: {winner.name}")
+        print(f"""
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Game No. {game.game_number}
+        User: {user_action.name}, Computer: {com.name}
+        -> Winner: {winner.name}
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""")
 
 
 if __name__ == '__main__':

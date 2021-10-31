@@ -56,10 +56,12 @@ class Game:
     @staticmethod
     def action_statistics():
         print(f"""
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Total Games: {Game.game_number}
         User Wins: {Game.user_winning}
         Computer Wins: {Game.computer_winning}
-        Tie Wins: {Game.tie_winning}""")
+        Tie Wins: {Game.tie_winning}
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""")
 
     @staticmethod
     def action_quit():

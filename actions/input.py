@@ -13,6 +13,10 @@ def get_user_input():
 
     if user_in in CommandEnum.get_values():
         return get_action(user_in)
+    try:
+        user_in = int(user_in)
+    except ValueError:
+        raise InvalidException()
     if int(user_in) in EntityEnum.get_values():
         return EntityEnum(int(user_in))
     raise InvalidException()
