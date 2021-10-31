@@ -1,6 +1,7 @@
 import types
 from actions.exceptions import InvalidException, GracefulExit
 from actions.game import Game
+from actions.input import get_user_input, get_computer_input
 from models.entity import EntityEnum
 
 
@@ -11,7 +12,7 @@ def main():
     while True:
         game.print_help()
         try:
-            user_action = game.get_user_input()
+            user_action = get_user_input()
             if isinstance(user_action, types.FunctionType):
                 user_action()
         except InvalidException:
@@ -23,7 +24,7 @@ def main():
         if not isinstance(user_action, EntityEnum):
             continue
 
-        com = game.get_computer_input()
+        com = get_computer_input()
         winner = game.calculate_winner(user_action, com)
         game.add_game()
         print(f"Game No. {game.game_number} \n"

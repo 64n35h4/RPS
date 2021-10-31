@@ -1,6 +1,4 @@
-import random
-
-from actions.exceptions import InvalidException, GracefulExit
+from actions.exceptions import GracefulExit
 from actions.rules import build_winning_matrix
 from actions.utils import print_help, get_winner_player, get_inputs
 from models.commands import CommandEnum
@@ -34,21 +32,6 @@ class Game:
     @classmethod
     def add_game(cls):
         cls.game_number += 1
-
-    @staticmethod
-    def get_user_input():
-        user_in = input("> ")
-        if not user_in: raise InvalidException()
-
-        if user_in in CommandEnum.get_values():
-            return get_action(user_in)
-        if int(user_in) in EntityEnum.get_values():
-            return EntityEnum(int(user_in))
-        raise InvalidException()
-
-    @staticmethod
-    def get_computer_input():
-        return random.choices(list(EntityEnum), k=1)[0]
 
     @staticmethod
     def calculate_winner(user_input: EntityEnum, computer_input: EntityEnum) -> PlayerEnum:
