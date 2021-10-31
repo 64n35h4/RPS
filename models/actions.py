@@ -23,9 +23,7 @@ class Actions:
     @staticmethod
     def action_statistics():
         from actions.game import Game
-        print(f"""
-        Total Games: {Game.game_number}\n
-        User Wins: {Game.user_winning}\n
-        Computer Wins: {Game.computer_winning}\n
-        Tie Wins: {Game.tie_winning}\n
-        """)
+        print(f"""Total Games: {Game.game_number}
+        User Wins: {Game.user_winning}
+        Computer Wins: {Game.computer_winning}
+        Tie Wins: {Game.tie_winning}""")

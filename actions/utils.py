@@ -17,3 +17,10 @@ def get_winner_player(index: int, inputs) -> PlayerEnum:
         if v.value == index:
             return k
     return PlayerEnum.TIE
+
+
+def get_inputs(user_input: EntityEnum, computer_input: EntityEnum) -> dict:
+    return {
+        PlayerEnum.USER: user_input,
+        PlayerEnum.COMPUTER: computer_input
+    }

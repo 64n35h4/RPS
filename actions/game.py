@@ -1,7 +1,7 @@
 import random
 
 from actions.rules import Rules
-from actions.utils import print_help, get_winner_player
+from actions.utils import print_help, get_winner_player, get_inputs
 from models.actions import ActionEnum, Actions
 from models.entity import EntityEnum
 from models.player import PlayerEnum
@@ -39,19 +39,16 @@ class Game:
         return random.choices(list(EntityEnum), k=1)[0]
 
     @staticmethod
-    def calculate_winner(user_input, computer_input) -> PlayerEnum:
+    def calculate_winner(user_input: EntityEnum, computer_input: EntityEnum) -> PlayerEnum:
         winning_matrix = Rules.build_winning_matrix()
-        inputs = {
-            PlayerEnum.USER: user_input,
-            PlayerEnum.COMPUTER: computer_input
-        }
+        inputs = get_inputs(user_input, computer_input)
         winning_index = winning_matrix[computer_input.value][user_input.value]
         winner = get_winner_player(winning_index, inputs)
         Game.update_winner(winner)
         return winner
 
     @classmethod
-    def update_winner(cls, winner):
+    def update_winner(cls, winner: PlayerEnum):
         mapper = {
             PlayerEnum.TIE: "tie_winning",
             PlayerEnum.USER: "user_winning",
