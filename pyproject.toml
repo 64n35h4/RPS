@@ -2,7 +2,7 @@
 name = "rps"
 version = "0.1.0"
 description = "Rock paper Scissors"
-authors = ['Tzvika']
+authors = ["Tzvika"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
