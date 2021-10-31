@@ -1,10 +1,11 @@
 import pytest
 from actions.exceptions import GracefulExit
-from models.actions import ActionEnum, Actions
+from actions.game import Game, get_action
+from models.commands import CommandEnum
 
 
 def test_actions_enum():
-    actions = ActionEnum
+    actions = CommandEnum
     assert actions.QUIT.value == 'q'
     assert actions.STATISTICS.value == 's'
 
@@ -12,17 +13,17 @@ def test_actions_enum():
 def test_get_action():
     quit_input = 'q'
     stat_input = 's'
-    assert Actions.get_action(quit_input) == Actions.action_quit
-    assert Actions.get_action(stat_input) == Actions.action_statistics
+    assert get_action(quit_input) == Game.action_quit
+    assert get_action(stat_input) == Game.action_statistics
 
 
 def test_action_quit():
     with pytest.raises(GracefulExit):
-        Actions.action_quit()
+        Game.action_quit()
 
 
 def test_action_statistics(capsys):
-    Actions.action_statistics()
+    Game.action_statistics()
     out, err = capsys.readouterr()
     out = list(
         filter(
